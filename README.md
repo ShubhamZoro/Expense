@@ -11,7 +11,7 @@ This is a Flask-based web application for managing and sharing daily expenses. U
 - Downloading balance sheets as CSV files
 
 1. **Clone the repository:**
-   git clone https://github.com/your-repo/expense-sharing-app.git
+   git clone https://github.com/ShubhamZoro/Expense.git
 2. ** Installing requirement:**
    pip install -r requirements.txt
 3. ** Run these command in sequence:**
