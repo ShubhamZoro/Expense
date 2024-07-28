@@ -1,6 +1,6 @@
 # Expense Sharing Web Application
 
-This is a Flask-based web application for managing and sharing daily expenses. Users can register, log in, add expenses, and download balance sheets.
+This is a Flask-based web application for managing and sharing daily expenses. Users can register, log in, add expenses, and download balance sheets. In the code, you will find that I have given mail-in app.py and a password for sending emails so you have to use your other wise the code will not work.
 
 ## Features
 
