@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Add Expense - Daily Expenses Sharing App{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Add Expense</h1>
+<form method="POST" action="{{ url_for('add_expense') }}">
+    <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" class="form-control" step="0.01" required>
+    </div>
+    <div class="form-group">
+        <label for="method">Method:</label>
+        <select id="method" name="method" class="form-control" required>
+            <option value="equal">Equal Split</option>
+            <option value="exact">Exact Amount</option>
+            <option value="percentage">Percentage</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="participants">Participants (comma separated emails):</label>
+        <input type="text" id="participants" name="participants" class="form-control" required>
+    </div>
+    <div id="additional-fields" class="form-group"></div>
+    <button type="submit" class="btn btn-primary btn-block">Add Expense</button>
+</form>
+
+<script>
+document.getElementById('method').addEventListener('change', updateAdditionalFields);
+document.getElementById('participants').addEventListener('input', updateAdditionalFields);
+
+function updateAdditionalFields() {
+    const additionalFields = document.getElementById('additional-fields');
+    additionalFields.innerHTML = '';
+    const method = document.getElementById('method').value;
+    const participants = document.getElementById('participants').value.split(',');
+
+    if (method === 'exact' || method === 'percentage') {
+        participants.forEach(participant => {
+            const cleanParticipant = participant.trim();
+            if (cleanParticipant) {
+                const label = document.createElement('label');
+                label.innerText = `${cleanParticipant}:`;
+                additionalFields.appendChild(label);
+
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.step = '0.01';
+                input.name = `${method === 'exact' ? 'amount_' : 'percentage_'}${cleanParticipant}`;
+                input.classList.add('form-control', 'mb-2');
+                input.required = true;
+                input.placeholder = method === 'exact' ? 'Enter exact amount' : 'Enter percentage';
+                additionalFields.appendChild(input);
+            }
+        });
+    }
+}
+</script>
+{% endblock %}
