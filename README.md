@@ -12,9 +12,9 @@ This is a Flask-based web application for managing and sharing daily expenses. U
 
 1. **Clone the repository:**
    git clone https://github.com/ShubhamZoro/Expense.git
-2. ** Installing requirement:**
+2. **Installing requirement:**
    pip install -r requirements.txt
-3. ** Run these command in sequence:**
+3. **Run these commands in sequence:**
    flask db init
    flask db migrate -m "Initial migration"
    flask db upgrade
